@@ -5,6 +5,8 @@ gem 'rails', '5.0.0'
 gem 'puma', '3.4.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '5.0.6'
+# Use Google Webfonts
+gem 'google-webfonts', '0.2.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '3.0.0'
 # Use CoffeeScript for .coffee assets and views
@@ -17,6 +19,8 @@ gem 'jquery-rails', '4.1.1'
 gem 'turbolinks', '5.0.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '2.5.0'
+# Use Twitter Bootstrap library for front-end UI and layout
+gem 'bootstrap-sass', '3.3.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '3.0'
 # Use ActiveModel has_secure_password

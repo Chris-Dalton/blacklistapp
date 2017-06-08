@@ -7,6 +7,8 @@ gem 'puma', '3.4.0'
 gem 'sass-rails', '5.0.6'
 # Use Google Webfonts
 gem 'google-webfonts', '0.2.0'
+# Use Font Awesome sass gem for adding icons
+gem 'font-awesome-sass', '4.6.2'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '3.0.0'
 # Use CoffeeScript for .coffee assets and views

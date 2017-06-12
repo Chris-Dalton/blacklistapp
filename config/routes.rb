@@ -8,7 +8,8 @@ Rails.application.routes.draw do
  resources :users
  post 'users', to: 'users#create'
  
- resources :contacts
- get 'contact-us', to: 'contacts#new'
+ resources :contacts, only: :create
+ 
+ get 'contact-us', to: 'contacts#new', as: 'new_contact'
  
 end

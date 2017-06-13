@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
  root to: 'pages#home'
  
  get 'about', to: 'pages#about'
  get 'submit', to: 'pages#submit'
  get 'search', to: 'pages#search'
- 
- resources :users
- post 'users', to: 'users#create'
  
  resources :contacts, only: :create
  

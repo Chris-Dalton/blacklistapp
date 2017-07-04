@@ -1,8 +1,8 @@
-/* global $, Stripe */
+/* global $, Stripe, Token*/
 //Document ready.
 $(document).on('turbolinks:load', function(){
   var theForm = $('#pro_form');
-  var submitBtn = $('#form-signup-btn');
+  var submitBtn = $('#form-submit-btn');
   //Set Stripe public key.
   Stripe.setPublishableKey( $('meta[name="stripe-key"]').attr('content') );
   //When user clicks form submit btn,
@@ -37,7 +37,7 @@ $(document).on('turbolinks:load', function(){
       submitBtn.prop('disabled', false).val("Sign Up");
     } else {
       //Send the card info to Stripe.
-      Stripe.createToken({
+      Stripe.card.createToken({
         number: ccNum,
         cvc: cvcNum,
         exp_month: expMonth,
@@ -48,11 +48,27 @@ $(document).on('turbolinks:load', function(){
   });
   //Stripe will return a card token.
   function stripeResponseHandler(status, response) {
-    //Get the token from the response.
+
+  // Grab the form:
+  var $form = $('#payment-form');
+
+  if (response.error) { // Problem!
+
+    // Show the errors on the form
+    $form.find('.payment-errors').text(response.error.message);
+    $form.find('button').prop('disabled', false); // Re-enable submission
+
+  } else { // Token was created!
+
+    // Get the token ID:
     var token = response.id;
-    //Inject the card token in a hidden field.
-    theForm.append( $('<input type="hidden" name="user[stripe_card_token]">').val(token) );
-    //Submit form to our Rails app.
-    theForm.get(0).submit();
+
+    // Insert the token into the form so it gets submitted to the server:
+    $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+
+    // Submit the form:
+    $form.get(0).submit();
+
   }
+}
 });
